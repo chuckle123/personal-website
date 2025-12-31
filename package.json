@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^3.0.2",
+    "@ai-sdk/react": "^3.0.5",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.4.0",
+    "ai": "^6.0.5",
+    "handlebars": "^4.7.8",
     "next": "^16.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "three": "^0.180.0"
+    "three": "^0.180.0",
+    "zod": "^4.3.2"
   },
   "devDependencies": {
     "@types/node": "^20",
