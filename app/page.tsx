@@ -1,40 +1,14 @@
 "use client"
 
 import { useChat } from "@ai-sdk/react"
-import { FormEvent, useMemo } from "react"
-
-// Create transport for the chat API
-class ChatTransport {
-  private api: string
-
-  constructor(api: string) {
-    this.api = api
-  }
-
-  async submitMessages(options: {
-    chatId: string
-    messages: Array<{ role: string; content: string }>
-    abortSignal?: AbortSignal
-  }) {
-    const response = await fetch(this.api, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: options.messages, id: options.chatId }),
-      signal: options.abortSignal,
-    })
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    return response
-  }
-}
+import { DefaultChatTransport } from "ai"
+import { FormEvent, useMemo, useState } from "react"
 
 export default function ChatPage() {
-  const transport = useMemo(() => new ChatTransport("/api/chat"), [])
+  const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), [])
+  const [input, setInput] = useState("")
 
-  const { messages, input, setInput, handleSubmit, status, stop } = useChat({
+  const { messages, sendMessage, status, stop } = useChat({
     transport,
     onError: (error) => {
       console.error("Chat error:", error)
@@ -46,20 +20,21 @@ export default function ChatPage() {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (!input.trim() || isLoading) return
-    handleSubmit(e)
+    sendMessage({ role: "user", parts: [{ type: "text", text: input }] })
+    setInput("")
   }
 
   return (
     <div className="flex flex-col h-screen max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Blog Management Assistant</h1>
+      <h1 className="text-2xl font-bold mb-4">Website Builder Assistant</h1>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto space-y-4 mb-4">
         {messages.length === 0 && (
           <div className="text-gray-500 text-center mt-8">
-            <p>Welcome! I can help you manage your blog.</p>
+            <p>Welcome! I can help you build your website.</p>
             <p className="text-sm mt-2">
-              Try asking me to find articles or create new ones.
+              Try asking me to find content or create new pages.
             </p>
           </div>
         )}
@@ -157,7 +132,7 @@ function MessageBubble({
                       {JSON.stringify(tool.args, null, 2)}
                     </pre>
                   </details>
-                  {tool.state === "result" && tool.result && (
+                  {tool.state === "result" && tool.result !== undefined && (
                     <details className="mt-1">
                       <summary className="cursor-pointer text-xs opacity-70">
                         Result

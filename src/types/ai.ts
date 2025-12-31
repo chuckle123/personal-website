@@ -1,8 +1,8 @@
 import { z } from "zod"
 
-// ============== Article Entity ==============
+// ============== Content/Page Entity ==============
 
-export const zArticle = z.object({
+export const zContent = z.object({
   id: z.string(),
   title: z.string(),
   slug: z.string(),
@@ -17,59 +17,71 @@ export const zArticle = z.object({
   updatedAt: z.string(),
 })
 
-export type Article = z.infer<typeof zArticle>
+export type Content = z.infer<typeof zContent>
 
-// ============== List Articles Tool ==============
+// ============== List Content Tool ==============
 
-export const zListArticlesToolParams = z.object({
-  context: z.string().describe("The user context for filtering articles"),
-  status: z.enum(["draft", "published", "archived", "all"]).optional(),
-  category: z.string().optional(),
-  limit: z.number().min(1).max(50).optional().default(10),
+export const zListContentToolParams = z.object({
+  query: z.string().describe("Search query to find content"),
+  status: z.enum(["draft", "published", "archived", "all"]).default("all"),
+  category: z.string().nullable().default(null),
+  limit: z.number().min(1).max(50).default(10),
 })
 
-export type ListArticlesToolParams = z.infer<typeof zListArticlesToolParams>
+export type ListContentToolParams = z.infer<typeof zListContentToolParams>
 
-export const zListArticlesToolResult = z.object({
-  articles: z.array(
-    zArticle
-      .pick({
-        id: true,
-        title: true,
-        slug: true,
-        excerpt: true,
-        author: true,
-        category: true,
-        status: true,
-        publishedAt: true,
-      })
-      .extend({
-        reasoning: z.string().describe("Why this article was selected"),
-      })
+export const zListContentToolResult = z.object({
+  pages: z.array(
+    zContent.pick({
+      id: true,
+      title: true,
+      slug: true,
+      excerpt: true,
+      category: true,
+      status: true,
+      updatedAt: true,
+    })
   ),
   totalCount: z.number(),
 })
 
-export type ListArticlesToolResult = z.infer<typeof zListArticlesToolResult>
+export type ListContentToolResult = z.infer<typeof zListContentToolResult>
 
-// ============== Create Article Tool ==============
+// ============== View Content Tool ==============
 
-export const zCreateArticleToolParams = z.object({
-  title: z.string().min(1).describe("The article title"),
-  content: z.string().min(1).describe("The article content in markdown"),
-  excerpt: z.string().optional().describe("A short summary of the article"),
-  category: z.string().describe("The article category"),
-  tags: z.array(z.string()).optional().default([]),
-  status: z.enum(["draft", "published"]).optional().default("draft"),
+export const zViewContentToolParams = z.object({
+  id: z.string().describe("The ID of the content to view"),
 })
 
-export type CreateArticleToolParams = z.infer<typeof zCreateArticleToolParams>
+export type ViewContentToolParams = z.infer<typeof zViewContentToolParams>
 
-export const zCreateArticleToolResult = z.object({
+export const zViewContentToolResult = z.object({
+  found: z.boolean(),
+  page: zContent.nullable(),
+})
+
+export type ViewContentToolResult = z.infer<typeof zViewContentToolResult>
+
+// ============== Upsert Content Tool ==============
+
+export const zUpsertContentToolParams = z.object({
+  id: z.string().nullable().default(null).describe("The ID of existing content to update, or null to create new"),
+  title: z.string().min(1).describe("The page title"),
+  slug: z.string().min(1).describe("URL slug for the page"),
+  content: z.string().min(1).describe("The page content in markdown"),
+  excerpt: z.string().describe("A short summary of the page"),
+  category: z.string().describe("The page category"),
+  tags: z.array(z.string()).default([]),
+  status: z.enum(["draft", "published"]).default("draft"),
+})
+
+export type UpsertContentToolParams = z.infer<typeof zUpsertContentToolParams>
+
+export const zUpsertContentToolResult = z.object({
   success: z.boolean(),
-  article: zArticle.optional(),
-  error: z.string().optional(),
-  reasoning: z.string().describe("Explanation of the creation process"),
+  page: zContent.nullable(),
+  error: z.string().nullable(),
+  created: z.boolean().describe("True if new page was created, false if existing was updated"),
 })
 
-export type CreateArticleToolResult = z.infer<typeof zCreateArticleToolResult>
+export type UpsertContentToolResult = z.infer<typeof zUpsertContentToolResult>

@@ -4,9 +4,12 @@ import { headers } from "next/headers"
 import { randomUUID } from "crypto"
 
 export async function POST(req: Request) {
+  console.log("[chat/route] POST request received")
   try {
     const { messages, id }: { messages: UIMessage[]; id?: string } =
       await req.json()
+
+    console.log("[chat/route] Messages received:", messages.length)
 
     // Generate trace ID for telemetry
     const traceId = id || randomUUID()
@@ -15,17 +18,21 @@ export async function POST(req: Request) {
     const headersList = await headers()
     const userId = headersList.get("x-user-id") || "anonymous"
 
+    console.log("[chat/route] Calling blogConversationAgent", { traceId, userId })
+
     // Create streaming response
-    const result = blogConversationAgent({
+    const result = await blogConversationAgent({
       messages,
       traceId,
       userId,
     })
 
+    console.log("[chat/route] Agent completed, returning stream")
+
     // Return streaming response
-    return result.toTextStreamResponse()
+    return result.toUIMessageStreamResponse()
   } catch (error) {
-    console.error("Chat API error:", error)
+    console.error("[chat/route] Error:", error)
     return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },

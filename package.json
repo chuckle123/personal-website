@@ -1,5 +1,5 @@
 {
-  "name": "cabinet-app",
+  "name": "website-builder",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "@ai-sdk/react": "^3.0.5",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.4.0",
+    "@vercel/blob": "^2.0.0",
     "ai": "^6.0.5",
     "handlebars": "^4.7.8",
     "next": "^16.1.1",
