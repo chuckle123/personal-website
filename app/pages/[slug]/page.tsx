@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation"
 import { getContentBySlug } from "@/domains/ai/tools/contentService"
 
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  return []
+}
+
 interface PageProps {
   params: Promise<{ slug: string }>
 }
