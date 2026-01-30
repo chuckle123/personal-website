@@ -42,4 +42,4 @@ export async function POST(req: Request) {
 
 // Disable body parsing for streaming
 export const runtime = "nodejs"
-export const dynamic = "force-dynamic"
+export const dynamic = "force-static"
