@@ -14,7 +14,7 @@ export default function Contact() {
         </p>
         <p>
           <a
-            href="https://github.com/cameroncspencer"
+            href="https://github.com/chuckle123"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -23,7 +23,7 @@ export default function Contact() {
         </p>
         <p>
           <a
-            href="https://linkedin.com/in/cameroncspencer"
+            href="https://www.linkedin.com/in/cameronmspencer/"
             target="_blank"
             rel="noopener noreferrer"
           >
