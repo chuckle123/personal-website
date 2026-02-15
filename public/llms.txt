@@ -1,0 +1,59 @@
+# Cameron Spencer
+
+> Staff Software Engineer and AI Engineer based in Philadelphia. Builds AI-powered tools, MCP servers, and fullstack applications with TypeScript, React, Next.js, Python, and LLM frameworks.
+
+## Contact
+
+- Email: 13spencerc@gmail.com
+- Website: https://camspencer.com
+- GitHub: https://github.com/chuckle123
+- LinkedIn: https://www.linkedin.com/in/cameronmspencer/
+
+## Skills
+
+AI & LLM: Claude Code (skills, sub-agents), MCP, Claude API, Gemini API, Vercel AI SDK, Langfuse, Cursor, Langchain, Langgraph
+Languages & Frameworks: TypeScript, JavaScript, Python, SQL, React, Next.js, Node.js
+Infrastructure & Data: Docker, Postgres, dbt, Redis, Azure Event Hub, tRPC, GraphQL, REST, Jest
+
+## Experience
+
+Staff AI Software Engineer at Token Terminal (Mar 2025 - Feb 2026)
+- Built MCP server for blockchain analytics, reducing tool count from 10+ to 4 and context per call from ~20,000 tokens to ~200
+- Designed semantic discovery layer with SQLite/FTS5 for entity resolution across thousands of entities
+- Engineered text-to-SQL agent over a 2PB BigQuery data warehouse
+- Automated data warehouse documentation generation for improved agent query accuracy
+
+Staff Software Engineer / Tech Lead at The Rounds (Jun 2022 - Mar 2025)
+- Backed by A16Z, Redpoint Ventures, Modern Ventures
+- Halved warehouse packing times with batch session support
+- Increased average order value by 31% through flexible delivery days
+- Cut order pack errors by 65%, enabling delivery of 5MM+ products
+- Built AI customer service platform using Langchain and tool calling
+- Led warehouse consolidation reducing operational costs by 10% weekly
+
+Senior Software Engineer / Tech Lead at Gopuff (Apr 2021 - Jun 2022)
+- Backed by SoftBank Vision Fund, Guggenheim Investments, Accel
+- Delivered scheduled delivery feature and driver forecasting model streamlining 2MM rides yearly
+- Built platform-agnostic ordering system, launching Uber Eats integration increasing revenue by 8%
+
+Co-Founder & CTO at Vitris LLC (Jan 2018 - Apr 2021)
+- Amassed $100K in grants and reached $15K monthly recurring revenue
+
+## Education
+
+Drexel University — Bachelor of Science in Computer Science
+
+## Projects
+
+MCP Server for Blockchain Analytics: TypeScript, MCP, Claude API — Progressive disclosure pattern reducing agent context overhead
+Text-to-SQL Agent: Python, BigQuery, LLM — Natural language to SQL over 2PB of undocumented tables
+Semantic Discovery Layer: SQLite, FTS5 — Full-text search for ambiguous entity resolution
+AI Customer Service Platform: TypeScript, Langchain — Reasoning agent handling common support requests
+Warehouse Packing App: React, Next.js — Custom logistics app cutting errors by 65%
+Event Ticket Pricing Aggregator: Python, scraping — 400K rows of daily pricing data
+
+## Pages
+
+- Home: https://camspencer.com
+- Projects: https://camspencer.com/projects
+- Resume (markdown): https://camspencer.com/resume.md
