@@ -15,25 +15,25 @@ const projects = [
     title: "Text-to-SQL Agent over 2PB Data Warehouse",
     description:
       "Engineered a chat-based agent that translates natural language into SQL queries against thousands of undocumented BigQuery tables. Automated table and column description generation to provide the agent with contextual metadata and improve query accuracy.",
-    tech: "Python, BigQuery, LLM Agents, Langchain",
+    tech: "TypeScript, Vercel AI SDK, BigQuery, LLM Agents",
   },
   {
     title: "Semantic Discovery Layer",
     description:
       "Designed a discovery system using SQLite and FTS5 full-text search within an isolated container, enabling agents to resolve ambiguous queries across thousands of different entities.",
-    tech: "SQLite, FTS5, TypeScript, Docker",
-  },
-  {
-    title: "AI-Assisted Customer Service Platform",
-    description:
-      "Used Langchain and tool calling to build a reasoning agent that serviced common customer requests, reducing manual support workload.",
-    tech: "TypeScript, Langchain, Tool Calling, Node.js",
+    tech: "SQLite, FTS5, TypeScript, Cloudflare Workers, Docker",
   },
   {
     title: "Warehouse Packing Application",
     description:
       "Developed a custom packing app that cut order pack errors by 65% and enabled delivery of 5MM+ products. Later rolled out batch packing sessions that halved warehouse packing times.",
     tech: "TypeScript, React, Next.js, Node.js",
+  },
+  {
+    title: "Platform-Agnostic Ordering System",
+    description:
+      "Developed an ordering system using a workflow engine, launching an Uber Eats integration that increased total revenue by 8%.",
+    tech: "TypeScript, Node.js, Workflow Engine",
   },
   {
     title: "Event Ticket Pricing Aggregator",

@@ -11,13 +11,7 @@ const projects = [
     title: "Text-to-SQL Agent over 2PB Data Warehouse",
     description:
       "Engineered a chat-based agent that translates natural language to SQL queries over thousands of undocumented BigQuery tables, with automated metadata generation for improved accuracy.",
-    tech: "Python, BigQuery, LLM Agents, Langchain",
-  },
-  {
-    title: "AI-Assisted Customer Service Platform",
-    description:
-      "Used Langchain and tool calling to build a reasoning agent that handled common customer requests, reducing support team workload.",
-    tech: "TypeScript, Langchain, Tool Calling, Node.js",
+    tech: "TypeScript, Vercel AI SDK, BigQuery, LLM Agents",
   },
   {
     title: "Warehouse Packing Application",

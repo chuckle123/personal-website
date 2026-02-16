@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import MagneticDotGrid from "@/components/MagneticDotGrid";
 
 export const metadata: Metadata = {
   title: "Cameron Spencer — AI Engineer",
@@ -17,10 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="px-6 py-8 max-w-content mx-auto">
-        <header className="mb-8">
+        <MagneticDotGrid />
+        <header className="relative z-10 bg-bg mb-8">
           <Navigation />
         </header>
-        <main>{children}</main>
+        <main className="relative z-10 bg-bg">{children}</main>
         <Footer />
       </body>
     </html>
