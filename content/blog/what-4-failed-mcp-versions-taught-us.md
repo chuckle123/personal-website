@@ -1,5 +1,5 @@
 ---
-title: "What 4 Failed MCP Versions Taught Me"
+title: "Half the Tools, 99% Fewer Tokens: How I Built a Better MCP Server"
 date: "2026-02-15"
 ---
 
