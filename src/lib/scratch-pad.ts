@@ -6,21 +6,21 @@ import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
 
-const blogDir = path.join(process.cwd(), "content/blog");
+const scratchPadDir = path.join(process.cwd(), "content/scratch-pad");
 
-export interface BlogPost {
+export interface ScratchPadPost {
   slug: string;
   title: string;
   date: string;
   content: string;
 }
 
-export function getAllPosts(): Omit<BlogPost, "content">[] {
-  const files = fs.readdirSync(blogDir).filter((f) => f.endsWith(".md"));
+export function getAllPosts(): Omit<ScratchPadPost, "content">[] {
+  const files = fs.readdirSync(scratchPadDir).filter((f) => f.endsWith(".md"));
 
   return files
     .map((filename) => {
-      const raw = fs.readFileSync(path.join(blogDir, filename), "utf-8");
+      const raw = fs.readFileSync(path.join(scratchPadDir, filename), "utf-8");
       const { data } = matter(raw);
       return {
         slug: filename.replace(/\.md$/, ""),
@@ -31,8 +31,11 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
     .sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPost> {
-  const raw = fs.readFileSync(path.join(blogDir, `${slug}.md`), "utf-8");
+export async function getPostBySlug(slug: string): Promise<ScratchPadPost> {
+  const raw = fs.readFileSync(
+    path.join(scratchPadDir, `${slug}.md`),
+    "utf-8",
+  );
   const { data, content } = matter(raw);
 
   const result = await unified()

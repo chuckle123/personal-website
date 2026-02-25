@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { getAllPosts, getPostBySlug } from "@/lib/scratch-pad";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -15,7 +15,7 @@ export async function generateMetadata({
   return { title: `${post.title} — Cameron Spencer` };
 }
 
-export default async function BlogPost({
+export default async function ScratchPadPost({
   params,
 }: {
   params: Promise<{ slug: string }>;

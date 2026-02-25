@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/scratch-pad";
 
 export const metadata: Metadata = {
-  title: "Blog — Cameron Spencer",
+  title: "Scratch Pad — Cameron Spencer",
 };
 
-export default function Blog() {
+export default function ScratchPad() {
   const posts = getAllPosts();
 
   return (
     <div>
-      <h1 className="text-[1.75rem] font-bold font-heading mb-6">Blog</h1>
+      <h1 className="text-[1.75rem] font-bold font-heading mb-6">Scratch Pad</h1>
       <div>
         {posts.map((post, i) => (
           <div key={post.slug}>
             {i > 0 && <hr className="border-border my-4" />}
             <Link
-              href={`/blog/${post.slug}`}
+              href={`/scratch-pad/${post.slug}`}
               className="flex items-baseline justify-between gap-4 no-underline group"
             >
               <span className="font-bold font-heading text-[1.05rem] group-hover:text-link-hover transition-colors">

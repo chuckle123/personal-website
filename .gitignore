@@ -36,3 +36,7 @@ next-env.d.ts
 
 # vscode
 .vscode
+
+# AI
+.claude/skills/
+!.claude/skills/design-system.md
